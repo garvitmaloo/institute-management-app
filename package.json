@@ -1,0 +1,14 @@
+{
+  "name": "coaching-institute-management-app",
+  "version": "1.0.0",
+  "description": "A simple MERN stack management app designed for a coaching institute",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Garvit",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.17.3"
+  }
+}

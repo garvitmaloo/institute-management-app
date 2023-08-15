@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Batch{
+  batch_id Int @default(autoincrement()) @id
+  batch_name String @unique
+  batch_incharge Teacher?
+  students Student[]
+}
+
+model Teacher{
+  teacher_id Int @default(autoincrement()) @id
+  teacher_name String
+  teacher_DOB DateTime
+  teacher_salary Int
+  subject String
+  image String
+  working_hours Int
+  batch_assigned Batch @relation(fields: [batch_incharge_id], references: [batch_id])
+  batch_incharge_id Int @unique
+}
+
+model Student{
+  student_id Int @default(autoincrement()) @id
+  student_name String 
+  student_DOB DateTime
+  class String
+  batches_enrolled Batch[]
+  image String
+  school_name String
+}

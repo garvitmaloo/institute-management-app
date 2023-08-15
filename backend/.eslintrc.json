@@ -1,0 +1,22 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-var": "error",
+    "no-unused-vars": "error",
+    "indent": ["error", 2],
+    "prefer-const": "error",
+    "no-alert": "warn",
+    "no-console": "warn",
+    "no-debugger": "warn"
+  }
+}
