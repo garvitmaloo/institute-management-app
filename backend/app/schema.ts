@@ -27,11 +27,11 @@ export const typedef = `
 
     type Query {
         students: StudentPayload!
-        teachers: [Teacher]!
-        batches: [Batch]!
+        teachers: TeachersPayload!
+        batches: BatchesPayload!
         studentDetails(studentId: Int!): StudentDetailsPayload!
-        teacherDetails(teacherId: Int!): Teacher!
-        batchDetails(batchId: Int!): Batch!
+        teacherDetails(teacherId: Int!): TeacherDetailsPayload!
+        batchDetails(batchId: Int!): BatchDetailsPayload!
     }
 
     type Error {
@@ -46,6 +46,26 @@ export const typedef = `
 
     type StudentDetailsPayload {
         errors: [Error]
-        studentData: Student
+        studentDetails: Student
+    }
+
+    type TeachersPayload {
+        errors: [Error]
+        teachersData: [Teacher!]!
+    }
+
+    type TeacherDetailsPayload {
+        errors: [Error]
+        teacherDetails: Teacher
+    }
+
+    type BatchesPayload {
+        errors: [Error]
+        batchesData: [Batch!]!
+    }
+
+    type BatchDetailsPayload {
+        errors: [Error]
+        batchDetails: Batch
     }
 `;
