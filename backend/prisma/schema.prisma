@@ -11,30 +11,30 @@ datasource db {
 }
 
 model Batch{
-  batch_id Int @default(autoincrement()) @id
-  batch_name String @unique
-  batch_incharge Teacher?
-  students Student[]
+  batchId Int @default(autoincrement()) @id @map("batch_id")
+  batchName String @unique @map("batch_name")
+  batch_incharge Teacher? 
+  students Student[] 
 }
 
 model Teacher{
-  teacher_id Int @default(autoincrement()) @id
-  teacher_name String
-  teacher_DOB DateTime
-  teacher_salary Int
-  subject String
+  teacherId Int @default(autoincrement()) @id @map("teacher_id")
+  teacherName String @map("teacher_name")
+  teacherDOB DateTime @map("teacher_DOB")
+  teacherSalary Int @map("teacher_salary")
+  subject String 
   image String
-  working_hours Int
-  batch_assigned Batch @relation(fields: [batch_incharge_id], references: [batch_id])
-  batch_incharge_id Int @unique
+  workingHours Int @map("working_hours")
+  batch_assigned Batch @relation(fields: [batchInchargeId], references: [batchId])
+  batchInchargeId Int @unique @map("batch_incharge_id")
 }
 
 model Student{
-  student_id Int @default(autoincrement()) @id
-  student_name String 
-  student_DOB DateTime
+  studentId Int @default(autoincrement()) @id @map("student_id")
+  studentName String @map("student_name")
+  studentDOB DateTime @map("student_DOB")
   class String
-  batches_enrolled Batch[]
+  batches_enrolled Batch[] 
   image String
-  school_name String
+  schoolName String @map("school_name")
 }
