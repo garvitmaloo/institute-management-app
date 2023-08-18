@@ -42,6 +42,10 @@ export const typedef = `
         teacherCreate(teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
         teacherUpdate(teacherId: String!, teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
         teacherDelete(teacherId: String!): TeacherDetailsPayload!
+
+        batchCreate(batchName: String!, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
+        batchUpdate(batchId: String!, batchName: String, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
+        batchDelete(batchId: String!): BatchDetailsPayload!
     }
 
     type Error {
