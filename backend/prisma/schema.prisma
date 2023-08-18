@@ -25,8 +25,8 @@ model Teacher{
   subject String 
   image String
   workingHours Int @map("working_hours")
-  batch_assigned Batch @relation(fields: [batchInchargeId], references: [batchId])
-  batchInchargeId Int @unique @map("batch_incharge_id")
+  batch_assigned Batch? @relation(fields: [batchInchargeId], references: [batchId])
+  batchInchargeId Int? @unique @map("batch_incharge_id")
 }
 
 model Student{
