@@ -5,6 +5,7 @@ import { DefaultArgs } from "@prisma/client/runtime/library";
 
 import { typedef } from "./schema";
 import { Query } from "./resolvers";
+import { Mutation } from "./resolvers/Mutations/Mutations";
 
 export interface Context {
   prisma: PrismaClient<Prisma.PrismaClientOptions, never, DefaultArgs>;
@@ -15,7 +16,8 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs: typedef,
     resolvers: {
-      Query
+      Query,
+      Mutation
     }
   });
 

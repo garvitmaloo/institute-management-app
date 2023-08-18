@@ -34,6 +34,12 @@ export const typedef = `
         batchDetails(batchId: Int!): BatchDetailsPayload!
     }
 
+    type Mutation {
+        studentCreate(studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!): StudentDetailsPayload!
+        studentUpdate(studentId: String!, studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!): StudentDetailsPayload!
+        studentDelete(studentId: String!): StudentDetailsPayload!
+    }
+
     type Error {
         message: String!
         statusCode: Int
