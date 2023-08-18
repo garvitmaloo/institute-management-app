@@ -38,6 +38,10 @@ export const typedef = `
         studentCreate(studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!): StudentDetailsPayload!
         studentUpdate(studentId: String!, studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!): StudentDetailsPayload!
         studentDelete(studentId: String!): StudentDetailsPayload!
+
+        teacherCreate(teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
+        teacherUpdate(teacherId: String!, teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
+        teacherDelete(teacherId: String!): TeacherDetailsPayload!
     }
 
     type Error {
