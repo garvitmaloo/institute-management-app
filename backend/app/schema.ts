@@ -46,6 +46,8 @@ export const typedef = `
         batchCreate(batchName: String!, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
         batchUpdate(batchId: String!, batchName: String, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
         batchDelete(batchId: String!): BatchDetailsPayload!
+
+        login(email: String!, password: String!): AuthPayload
     }
 
     type Error {
@@ -81,5 +83,10 @@ export const typedef = `
     type BatchDetailsPayload {
         errors: [Error]
         batchDetails: Batch
+    }
+
+    type AuthPayload {
+        errors: [Error]
+        token: String
     }
 `;
