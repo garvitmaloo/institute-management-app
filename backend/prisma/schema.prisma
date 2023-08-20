@@ -38,3 +38,10 @@ model Student{
   image String
   schoolName String @map("school_name")
 }
+
+model Admin{
+  adminId Int @default(autoincrement()) @id @map("admin_id")
+  adminName String @map("admin_name")
+  email String @unique
+  password String
+}
