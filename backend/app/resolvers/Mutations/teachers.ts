@@ -14,6 +14,7 @@ interface TeacherArgs {
   workingHours: number;
   subject: string;
   batchAssigned?: number;
+  createdBy?: number;
 }
 
 interface TeacherDetailsPayload {
@@ -42,7 +43,8 @@ export const teachersMutation = {
             connect: {
               batchId: args.batchAssigned
             }
-          }
+          },
+          createdBy: args?.createdBy
         }
       });
     } else {
@@ -53,7 +55,8 @@ export const teachersMutation = {
           subject: args.subject,
           teacherSalary: args.teacherSalary,
           workingHours: args.workingHours,
-          image: "Some dummy URL"
+          image: "Some dummy URL",
+          createdBy: args?.createdBy
         }
       });
     }

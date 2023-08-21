@@ -6,6 +6,7 @@ export const typedef = `
         batches: [Batch!]!
         class: Int!
         schoolName: String
+        createdBy: Int!
     }
 
     type Batch {
@@ -13,6 +14,7 @@ export const typedef = `
         batchName: String!
         batchIncharge: Teacher!
         students: [Student!]!
+        createdBy: Int!
     }
 
     type Teacher {
@@ -23,6 +25,7 @@ export const typedef = `
         subject: String!
         workingHours: Int!
         batchAssigned: Batch!
+        createdBy: Int!
     }
 
     type Query {
@@ -35,15 +38,15 @@ export const typedef = `
     }
 
     type Mutation {
-        studentCreate(studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!): StudentDetailsPayload!
+        studentCreate(studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!, createdBy: Int): StudentDetailsPayload!
         studentUpdate(studentId: String!, studentName: String!, studentDOB: String!, batches: [Int!]!, class: String!, schoolName: String!): StudentDetailsPayload!
         studentDelete(studentId: String!): StudentDetailsPayload!
 
-        teacherCreate(teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
+        teacherCreate(teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int, createdBy: Int): TeacherDetailsPayload!
         teacherUpdate(teacherId: String!, teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
         teacherDelete(teacherId: String!): TeacherDetailsPayload!
 
-        batchCreate(batchName: String!, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
+        batchCreate(batchName: String!, batchIncharge: String, students: [Int!]!, createdBy: Int): BatchDetailsPayload!
         batchUpdate(batchId: String!, batchName: String, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
         batchDelete(batchId: String!): BatchDetailsPayload!
 

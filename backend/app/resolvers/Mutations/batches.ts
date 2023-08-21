@@ -10,6 +10,7 @@ interface BatchArgs {
   batchName: string;
   students: Student[];
   batchIncharge?: string;
+  createdBy?: number;
 }
 
 interface BatchDetailsPayload {
@@ -38,7 +39,8 @@ export const batchMutations = {
             connect: {
               teacherId: Number(args.batchIncharge)
             }
-          }
+          },
+          createdBy: args?.createdBy
         }
       });
     } else {
@@ -49,7 +51,8 @@ export const batchMutations = {
             connect: args.students.map((studentId) => ({
               studentId: Number(studentId)
             }))
-          }
+          },
+          createdBy: args?.createdBy
         }
       });
     }

@@ -8,6 +8,7 @@ interface StudentCreateArgs {
   batches: number[];
   class: string;
   schoolName: string;
+  createdBy?: number;
 }
 
 interface StudentDetailsPayload {
@@ -30,7 +31,8 @@ export const studentMutations = {
         image: "Some dummy URL",
         batches_enrolled: {
           connect: args.batches.map((batchId) => ({ batchId }))
-        }
+        },
+        createdBy: args?.createdBy
       },
       include: {
         batches_enrolled: true

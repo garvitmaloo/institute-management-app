@@ -14,7 +14,8 @@ model Batch{
   batchId Int @default(autoincrement()) @id @map("batch_id")
   batchName String @unique @map("batch_name")
   batch_incharge Teacher? 
-  students Student[] 
+  students Student[]
+  createdBy Int @default(2) 
 }
 
 model Teacher{
@@ -27,6 +28,7 @@ model Teacher{
   workingHours Int @map("working_hours")
   batch_assigned Batch? @relation(fields: [batchInchargeId], references: [batchId])
   batchInchargeId Int? @unique @map("batch_incharge_id")
+  createdBy Int @default(2)
 }
 
 model Student{
@@ -37,6 +39,7 @@ model Student{
   batches_enrolled Batch[] 
   image String
   schoolName String @map("school_name")
+  createdBy Int @default(2)
 }
 
 model Admin{
