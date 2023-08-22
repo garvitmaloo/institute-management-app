@@ -42,12 +42,24 @@ const notFoundError: Error = {
   statusCode: 404
 };
 
+const unauthorizedError: Error = {
+  message: "You are not authorised for this resource.",
+  statusCode: 403
+};
+
 export const Query = {
   students: async (
     _: unknown,
     __: unknown,
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<StudentsDataPayload> => {
+    if (!userInfo) {
+      return {
+        errors: [unauthorizedError],
+        studentsData: null
+      };
+    }
+
     const allStudents = await prisma.student.findMany();
 
     if (!allStudents) {
@@ -66,8 +78,15 @@ export const Query = {
   studentDetails: async (
     _: unknown,
     { studentId }: { studentId: number },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<StudentDetails> => {
+    if (!userInfo) {
+      return {
+        errors: [unauthorizedError],
+        studentDetails: null
+      };
+    }
+
     const studentDetails = await prisma.student.findUnique({
       where: {
         studentId
@@ -95,8 +114,15 @@ export const Query = {
   teachers: async (
     _: unknown,
     __: unknown,
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<TeachersData> => {
+    if (!userInfo) {
+      return {
+        errors: [unauthorizedError],
+        teachersData: null
+      };
+    }
+
     const allTeachers = await prisma.teacher.findMany();
 
     if (!allTeachers) {
@@ -115,8 +141,15 @@ export const Query = {
   teacherDetails: async (
     _: unknown,
     { teacherId }: { teacherId: number },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<TeacherDetails> => {
+    if (!userInfo) {
+      return {
+        errors: [unauthorizedError],
+        teacherDetails: null
+      };
+    }
+
     const teacherDetails = await prisma.teacher.findUnique({
       where: {
         teacherId
@@ -141,8 +174,15 @@ export const Query = {
   batches: async (
     _: unknown,
     __: unknown,
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<BatchesData> => {
+    if (!userInfo) {
+      return {
+        errors: [unauthorizedError],
+        batchesData: null
+      };
+    }
+
     const allBatches = await prisma.batch.findMany();
 
     if (!allBatches) {
@@ -161,8 +201,15 @@ export const Query = {
   batchDetails: async (
     _: unknown,
     { batchId }: { batchId: number },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<BatchDetails> => {
+    if (!userInfo) {
+      return {
+        errors: [unauthorizedError],
+        batchDetails: null
+      };
+    }
+
     const batchDetails = await prisma.batch.findUnique({
       where: {
         batchId
