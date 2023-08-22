@@ -73,7 +73,7 @@ export const batchMutations = {
   batchUpdate: async (
     _: unknown,
     args: BatchArgs & { batchId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<BatchDetailsPayload> => {
     const batchRecord = await prisma.batch.findUnique({
       where: {
@@ -87,6 +87,18 @@ export const batchMutations = {
           {
             message: "No batch was found with the provided data.",
             statusCode: 404
+          }
+        ],
+        batchDetails: null
+      };
+    }
+
+    if (batchRecord.createdBy !== userInfo?.adminId) {
+      return {
+        errors: [
+          {
+            message: "You are not authorized to make changes to this resource.",
+            statusCode: 403
           }
         ],
         batchDetails: null
@@ -146,7 +158,7 @@ export const batchMutations = {
   batchDelete: async (
     _: unknown,
     { batchId }: { batchId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<BatchDetailsPayload> => {
     const batchRecord = await prisma.batch.findUnique({
       where: {
@@ -160,6 +172,18 @@ export const batchMutations = {
           {
             message: "Could not find any batch with the provided data.",
             statusCode: 404
+          }
+        ],
+        batchDetails: null
+      };
+    }
+
+    if (batchRecord.createdBy !== userInfo?.adminId) {
+      return {
+        errors: [
+          {
+            message: "You are not authorized to make changes to this resource.",
+            statusCode: 403
           }
         ],
         batchDetails: null

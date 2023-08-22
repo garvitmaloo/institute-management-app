@@ -77,7 +77,7 @@ export const teachersMutation = {
   teacherUpdate: async (
     _: unknown,
     args: TeacherArgs & { teacherId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<TeacherDetailsPayload> => {
     const teacherRecord = await prisma.teacher.findUnique({
       where: {
@@ -91,6 +91,18 @@ export const teachersMutation = {
           {
             message: "No teacher has been found with the provided data.",
             statusCode: 404
+          }
+        ],
+        teacherDetails: null
+      };
+    }
+
+    if (teacherRecord.createdBy !== userInfo?.adminId) {
+      return {
+        errors: [
+          {
+            message: "You are not authorized to make changes to this resource.",
+            statusCode: 403
           }
         ],
         teacherDetails: null
@@ -150,7 +162,7 @@ export const teachersMutation = {
   teacherDelete: async (
     _: unknown,
     { teacherId }: { teacherId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<TeacherDetailsPayload> => {
     const teacherRecord = await prisma.teacher.findUnique({
       where: {
@@ -164,6 +176,18 @@ export const teachersMutation = {
           {
             message: "No teacher has been found with the provided details.",
             statusCode: 404
+          }
+        ],
+        teacherDetails: null
+      };
+    }
+
+    if (teacherRecord.createdBy !== userInfo?.adminId) {
+      return {
+        errors: [
+          {
+            message: "You are not authorized to make changes to this resource.",
+            statusCode: 403
           }
         ],
         teacherDetails: null

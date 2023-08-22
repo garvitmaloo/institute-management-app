@@ -57,7 +57,7 @@ export const studentMutations = {
   studentUpdate: async (
     _: unknown,
     { studentId, ...studentDetails }: StudentCreateArgs & { studentId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<StudentDetailsPayload> => {
     const studentRecord = await prisma.student.findUnique({
       where: { studentId: Number(studentId) }
@@ -69,6 +69,18 @@ export const studentMutations = {
           {
             message: "Could not find any student with provided details.",
             statusCode: 404
+          }
+        ],
+        studentDetails: null
+      };
+    }
+
+    if (studentRecord.createdBy !== userInfo?.adminId) {
+      return {
+        errors: [
+          {
+            message: "You are not authorized to make changes to this resource",
+            statusCode: 403
           }
         ],
         studentDetails: null
@@ -100,7 +112,7 @@ export const studentMutations = {
   studentDelete: async (
     _: unknown,
     { studentId }: { studentId: string },
-    { prisma }: Context
+    { prisma, userInfo }: Context
   ): Promise<StudentDetailsPayload> => {
     const studentRecord = await prisma.student.findUnique({
       where: {
@@ -114,6 +126,18 @@ export const studentMutations = {
           {
             message: "No student exists with the provided details.",
             statusCode: 404
+          }
+        ],
+        studentDetails: null
+      };
+    }
+
+    if (studentRecord.createdBy !== userInfo?.adminId) {
+      return {
+        errors: [
+          {
+            message: "You are not authorized to make changes to this resource",
+            statusCode: 403
           }
         ],
         studentDetails: null
