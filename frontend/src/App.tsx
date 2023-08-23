@@ -1,8 +1,13 @@
+import { Routes, Route } from "react-router-dom";
+import AllBatches from "./pages/all-batches";
+
 function App() {
   return (
-    <div className="flex justify-center my-5 text-2xl font-semibold">
-      Welcome
-    </div>
+    <Routes>
+      <Route path="/admin">
+        <Route path="batch" element={<AllBatches />} />
+      </Route>
+    </Routes>
   );
 }
 
