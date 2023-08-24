@@ -13,3 +13,12 @@ export interface ResourcesHeaderComponentProps {
 export interface ResourcesMainComponentProps {
   component: ReactElement;
 }
+
+export interface AllBatchesTableProps {
+  id: string;
+  batchId: string;
+  batchName: string;
+  subject: string;
+  batchIncharge: string;
+  totalStudents: number;
+}
