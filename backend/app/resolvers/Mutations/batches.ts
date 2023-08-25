@@ -11,6 +11,7 @@ interface BatchArgs {
   students: Student[];
   batchIncharge?: string;
   createdBy?: number;
+  subject: string;
 }
 
 interface BatchDetailsPayload {
@@ -40,7 +41,8 @@ export const batchMutations = {
               teacherId: Number(args.batchIncharge)
             }
           },
-          createdBy: args?.createdBy
+          createdBy: args?.createdBy,
+          subject: args.subject
         }
       });
     } else {
@@ -52,7 +54,8 @@ export const batchMutations = {
               studentId: Number(studentId)
             }))
           },
-          createdBy: args?.createdBy
+          createdBy: args?.createdBy,
+          subject: args.subject
         }
       });
     }

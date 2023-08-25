@@ -15,6 +15,7 @@ export const typedef = `
         batchIncharge: Teacher!
         students: [Student!]!
         createdBy: Int!
+        subject: String!
     }
 
     type Teacher {
@@ -46,7 +47,7 @@ export const typedef = `
         teacherUpdate(teacherId: String!, teacherName: String!, teacherDOB: String!, teacherSalary: Int!, subject: String!, workingHours: Int!, batchAssigned: Int): TeacherDetailsPayload!
         teacherDelete(teacherId: String!): TeacherDetailsPayload!
 
-        batchCreate(batchName: String!, batchIncharge: String, students: [Int!]!, createdBy: Int): BatchDetailsPayload!
+        batchCreate(batchName: String!, batchIncharge: String, students: [Int!]!, createdBy: Int, subject: String!): BatchDetailsPayload!
         batchUpdate(batchId: String!, batchName: String, batchIncharge: String, students: [Int!]!): BatchDetailsPayload!
         batchDelete(batchId: String!): BatchDetailsPayload!
 

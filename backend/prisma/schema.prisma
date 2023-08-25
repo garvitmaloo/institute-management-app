@@ -15,7 +15,8 @@ model Batch{
   batchName String @unique @map("batch_name")
   batch_incharge Teacher? 
   students Student[]
-  createdBy Int @default(2) 
+  createdBy Int @default(2)
+  subject String
 }
 
 model Teacher{
