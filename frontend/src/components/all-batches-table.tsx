@@ -38,7 +38,10 @@ export default function AllBatchesTable({
   const modifiedTableData: GridRowsProp = tableData.map((item) => ({
     ...item,
     id: item.batchId,
+    batchIncharge: item.batchIncharge.teacherName,
+    totalStudents: item.students.length,
   }));
+
   return (
     <div>
       <DataGrid

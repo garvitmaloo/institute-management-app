@@ -9,12 +9,19 @@ const GET_ALL_BATCHES = gql`
   query {
     batches {
       errors {
-        message
         statusCode
+        message
       }
       batchesData {
         batchId
         batchName
+        subject
+        students {
+          studentName
+        }
+        batchIncharge {
+          teacherName
+        }
       }
     }
   }

@@ -19,6 +19,6 @@ export interface AllBatchesTableProps {
   batchId: string;
   batchName: string;
   subject: string;
-  batchIncharge: string;
-  totalStudents: number;
+  batchIncharge: { teacherName: string };
+  students: { studentName: string }[];
 }
