@@ -4,7 +4,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 import { DefaultArgs } from "@prisma/client/runtime/library";
 
 import { typedef } from "./schema";
-import { Query } from "./resolvers";
+import { Query, Batch } from "./resolvers";
 import { Mutation } from "./resolvers/Mutations/Mutations";
 import { getUserInfoFromToken } from "./utils/getUserInfoFromToken";
 
@@ -19,7 +19,8 @@ async function startServer() {
     typeDefs: typedef,
     resolvers: {
       Query,
-      Mutation
+      Mutation,
+      Batch
     }
   });
 

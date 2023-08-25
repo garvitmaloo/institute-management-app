@@ -183,7 +183,11 @@ export const Query = {
       };
     }
 
-    const allBatches = await prisma.batch.findMany();
+    const allBatches = await prisma.batch.findMany({
+      include: {
+        students: true
+      }
+    });
 
     if (!allBatches) {
       return {
@@ -213,6 +217,9 @@ export const Query = {
     const batchDetails = await prisma.batch.findUnique({
       where: {
         batchId
+      },
+      include: {
+        students: true
       }
     });
 

@@ -12,7 +12,7 @@ export const typedef = `
     type Batch {
         batchId: String!
         batchName: String!
-        batchIncharge: Teacher!
+        batchIncharge: Teacher
         students: [Student!]!
         createdBy: Int!
         subject: String!
