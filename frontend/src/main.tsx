@@ -8,9 +8,11 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 
 import App from "./App.tsx";
 import "./index.css";
+import store from "./store/store.ts";
 
 const httpLink = createHttpLink({
   uri: "http://localhost:8080/",
@@ -35,9 +37,11 @@ const client = new ApolloClient({
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>
 );
